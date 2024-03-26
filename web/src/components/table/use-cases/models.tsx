@@ -240,7 +240,7 @@ export default function ModelTable({ projectId }: { projectId: string }) {
   const convertToTableRow = (model: Model): ModelTableRow => {
     return {
       modelId: model.id,
-      maintainer: model.projectId ? "User" : "Langfuse",
+      maintainer: model.projectId ? "User" : "MonetizbotAnalytics",
       modelName: model.modelName,
       matchPattern: model.matchPattern,
       startDate: model.startDate ? new Date(model.startDate) : undefined,

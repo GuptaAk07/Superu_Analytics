@@ -10,7 +10,7 @@ export function HostNameProject() {
       <Card className="mb-4 p-4">
         <div className="mb-6">
           <div className="my-2">
-            When connecting to Langfuse, use this hostname / baseurl.
+            When connecting to MonetizeBotAnalytics, use this hostname / baseurl.
           </div>
           <CodeView content={window.origin} />
         </div>
