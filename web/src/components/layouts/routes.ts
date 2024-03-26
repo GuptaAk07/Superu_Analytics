@@ -3,7 +3,7 @@ import { type Scope } from "@/src/features/rbac/constants/roleAccessRights";
 import {
   Database,
   LayoutDashboard,
-  LifeBuoy,
+  // LifeBuoy,
   ListTree,
   type LucideIcon,
   Settings,
@@ -74,9 +74,9 @@ export const ROUTES: Route[] = [
     pathname: "/project/[projectId]/settings",
     icon: Settings,
   },
-  {
-    name: "Support",
-    pathname: "/project/[projectId]/support",
-    icon: LifeBuoy,
-  },
+  // {
+  //   name: "Support",
+  //   pathname: "/project/[projectId]/support",
+  //   icon: LifeBuoy,
+  // },
 ];
