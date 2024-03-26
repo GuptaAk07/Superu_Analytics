@@ -6,7 +6,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { Code, MessageSquarePlus, Info, ChevronRightIcon } from "lucide-react";
+import { Code, Info, ChevronRightIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/src/utils/tailwind";
 import {
@@ -16,7 +16,7 @@ import {
 } from "@/src/components/ui/avatar";
 import { api } from "@/src/utils/api";
 import { NewProjectButton } from "@/src/features/projects/components/NewProjectButton";
-import { FeedbackButtonWrapper } from "@/src/features/feedback/component/FeedbackButton";
+// import { FeedbackButtonWrapper } from "@/src/features/feedback/component/FeedbackButton";
 import { Button } from "@/src/components/ui/button";
 import Head from "next/head";
 import { env } from "@/src/env.mjs";
@@ -652,7 +652,7 @@ const MainNavigation: React.FC<{
             ) : null}
           </li>
         ))}
-        <FeedbackButtonWrapper
+        {/* <FeedbackButtonWrapper
           className="w-full"
           title="Provide feedback"
           description="What do you think about this project? What can be improved?"
@@ -665,7 +665,7 @@ const MainNavigation: React.FC<{
             />
             Feedback
           </li>
-        </FeedbackButtonWrapper>
+        </FeedbackButtonWrapper> */}
       </ul>
     </li>
   );
