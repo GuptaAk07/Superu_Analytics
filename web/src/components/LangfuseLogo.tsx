@@ -53,14 +53,14 @@ export const LangfuseLogo = ({
     )}
     {/* Langfuse Logo */}
     <div className="flex items-center">
-      <LangfuseIcon size={size === "sm" ? 16 : 20} />
+      <LangfuseIcon size={size === "sm" ? 14 : 16} />
       <span
         className={cn(
           "ml-2 font-mono font-semibold",
           size === "sm" ? "text-sm" : "text-xl",
         )}
       >
-        Langfuse
+        MonetizeBotAnalytics
       </span>
       {version && (
         <a
