@@ -24,9 +24,9 @@ import {
 import { isValidOption } from "@/src/utils/types";
 import { api } from "@/src/utils/api";
 import { usePostHog } from "posthog-js/react";
-import { FeedbackButtonWrapper } from "@/src/features/feedback/component/FeedbackButton";
-import { BarChart2 } from "lucide-react";
-import { Button } from "@/src/components/ui/button";
+// import { FeedbackButtonWrapper } from "@/src/features/feedback/component/FeedbackButton";
+// import { BarChart2 } from "lucide-react";
+// import { Button } from "@/src/components/ui/button";
 import { FilterBuilder } from "@/src/features/filters/components/filter-builder";
 import { type FilterState } from "@/src/features/filters/types";
 import { type ColumnDefinition } from "@/src/server/api/interfaces/tableDefinition";
@@ -148,7 +148,7 @@ export default function Start() {
             onChange={setUserFilterState}
           />
         </div>
-        <FeedbackButtonWrapper
+        {/* <FeedbackButtonWrapper
           title="Request Chart"
           description="Your feedback matters! Let the Langfuse team know what additional data or metrics you'd like to see in your dashboard."
           type="dashboard"
@@ -167,7 +167,7 @@ export default function Start() {
             />
             Request Chart
           </Button>
-        </FeedbackButtonWrapper>
+        </FeedbackButtonWrapper> */}
       </div>
       <div className="grid w-full grid-cols-1 gap-4 overflow-hidden lg:grid-cols-2 xl:grid-cols-6">
         <TracesBarListChart
