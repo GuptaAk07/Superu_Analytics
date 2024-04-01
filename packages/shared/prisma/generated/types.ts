@@ -277,6 +277,7 @@ export type Trace = {
     timestamp: Generated<Timestamp>;
     name: string | null;
     user_id: string | null;
+    user_intent: string | null;
     metadata: unknown | null;
     release: string | null;
     version: string | null;
