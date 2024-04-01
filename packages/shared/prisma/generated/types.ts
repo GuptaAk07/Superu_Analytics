@@ -327,6 +327,19 @@ export type User = {
     updated_at: Generated<Timestamp>;
     feature_flags: Generated<string[]>;
 };
+export type user_profiling = {
+    id: string;
+    age: string | null;
+    user_id: string | null;
+    gender: string | null;
+    interests: string | null;
+    city: string | null;
+    profession: string | null;
+    relationship_status: string | null;
+    project_id: string;
+    created_at: Generated<Timestamp>;
+    updated_at: Generated<Timestamp>;
+};
 export type VerificationToken = {
     identifier: string;
     token: string;
@@ -355,6 +368,7 @@ export type DB = {
     trace_sessions: TraceSession;
     traces: Trace;
     traces_view: TraceView;
+    user_profiling: user_profiling;
     users: User;
     verification_tokens: VerificationToken;
 };
