@@ -10,6 +10,7 @@ import { Fragment } from "react";
 export const IOPreview: React.FC<{
   input?: unknown;
   output?: unknown;
+  user_intent?: string;
   isLoading?: boolean;
   hideIfNull?: boolean;
 }> = ({ isLoading = false, hideIfNull = false, ...props }) => {
@@ -17,6 +18,7 @@ export const IOPreview: React.FC<{
 
   const input = deepParseJson(props.input);
   const output = deepParseJson(props.output);
+  const user_intent = props.user_intent
 
   // parse old completions: { completion: string } -> string
   const outLegacyCompletionSchema = z
@@ -104,6 +106,14 @@ export const IOPreview: React.FC<{
               json={outputClean}
               isLoading={isLoading}
               className="flex-1 bg-green-50"
+            />
+          ) : null}
+          {!(hideIfNull && !user_intent) ? (
+            <JSONView
+              title="User Intent"
+              json={user_intent}
+              isLoading={isLoading}
+              className="flex-1"
             />
           ) : null}
         </>

@@ -123,6 +123,7 @@ export default async function handler(
             CONCAT('/project/', t.project_id,'/traces/',t.id) as "htmlPath",
             t.timestamp,
             t.name,
+            t.user_intent,
             t.input,
             t.output,
             t.project_id as "projectId",

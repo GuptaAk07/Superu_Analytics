@@ -63,6 +63,7 @@ export const TraceBody = z.object({
   externalId: z.string().nullish(),
   input: jsonSchema.nullish(),
   output: jsonSchema.nullish(),
+  user_intent: z.string().nullish(),
   sessionId: z.string().nullish(),
   userId: z.string().nullish(),
   metadata: jsonSchema.nullish(),
