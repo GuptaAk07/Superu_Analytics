@@ -193,6 +193,7 @@ model Trace {
     timestamp  DateTime      @default(now())
     name       String?
     userId     String?       @map("user_id")
+    userIntent String?       @map("user_intent")
     metadata   Json?
     release    String?
     version    String?
