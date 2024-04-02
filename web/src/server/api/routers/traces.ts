@@ -83,6 +83,7 @@ export const traceRouter = createTRPCRouter({
       const tracesQuery = createTracesQuery(
         Prisma.sql`t.*,
           t."user_id" AS "userId",
+          t."user_intent" AS "userIntent",
           t."metadata" AS "metadata",
           t.session_id AS "sessionId",
           t."bookmarked" AS "bookmarked",

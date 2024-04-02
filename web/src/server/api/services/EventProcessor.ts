@@ -474,6 +474,7 @@ export class TraceProcessor implements EventProcessor {
           : undefined,
         name: body.name ?? undefined,
         userId: body.userId ?? undefined,
+        userIntent: body.userIntent ?? undefined,
         input: body.input ?? undefined,
         output: body.output ?? undefined,
         metadata: mergedMetadata ?? body.metadata ?? undefined,
@@ -490,6 +491,7 @@ export class TraceProcessor implements EventProcessor {
           ? new Date(this.event.body.timestamp)
           : undefined,
         userId: body.userId ?? undefined,
+        userIntent: body.userIntent ?? undefined,
         input: body.input ?? undefined,
         output: body.output ?? undefined,
         metadata: mergedMetadata ?? body.metadata ?? undefined,

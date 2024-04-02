@@ -69,7 +69,7 @@ export const TracePreview = ({
           key={trace.id + "-io"}
           input={trace.input ?? undefined}
           output={trace.output ?? undefined}
-          user_intent={trace.user_intent ?? ""}
+          userIntent={trace.userIntent ?? ""}
         />
         <JSONView
           key={trace.id + "-metadata"}

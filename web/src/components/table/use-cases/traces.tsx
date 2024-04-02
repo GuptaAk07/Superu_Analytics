@@ -46,7 +46,7 @@ export type TracesTableRow = {
   userId: string;
   metadata?: string;
   level: ObservationLevel;
-  user_intent: string;
+  userIntent: string;
   latency?: number;
   release?: string;
   version?: string;
@@ -172,7 +172,7 @@ export default function TracesTable({
       timestamp: trace.timestamp.toLocaleString(),
       name: trace.name ?? "",
       level: trace.level,
-      user_intent: trace.user_intent ?? "",
+      userIntent: trace.userIntent ?? "",
       metadata: JSON.stringify(trace.metadata),
       release: trace.release ?? undefined,
       version: trace.version ?? undefined,
@@ -274,9 +274,9 @@ export default function TracesTable({
       enableSorting: true,
     },
     {
-      accessorKey: "user_intent",
+      accessorKey: "userIntent",
       header: "User Intent",
-      id: "user_intent",
+      id: "userIntent",
       enableHiding: true,
     },
     {
