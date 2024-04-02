@@ -116,6 +116,30 @@ function DetailsTab({ userId, projectId }: TabProps) {
     ? [
         { label: "User Id", value: user.data.userId },
         {
+          label: "Age",
+          value: user.data.age?.toLocaleString(),
+        },
+        {
+          label: "Gender",
+          value: user.data.gender?.toLocaleString(),
+        },
+        {
+          label: "Interests",
+          value: user.data.interests?.toLocaleString(),
+        },
+        {
+          label: "City",
+          value: user.data.city?.toLocaleString(),
+        },
+        {
+          label: "Profession",
+          value: user.data.profession?.toLocaleString(),
+        },
+        {
+          label: "Relationship Status",
+          value: user.data.relationshipStatus?.toLocaleString(),
+        },
+        {
           label: "First Observation",
           value: user.data.firstObservation?.toLocaleString(),
         },

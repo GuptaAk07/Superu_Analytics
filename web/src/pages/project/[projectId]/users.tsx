@@ -54,18 +54,34 @@ export default function UsersPage() {
     },
   );
 
+  const userProfiles = api.users.userProfile.useQuery(
+    {
+    projectId,
+    userIds: users.data?.users.map((u) => u.userId) ?? [],
+    },
+    {
+      enabled: users.isSuccess,
+    },
+  );
+
   type UserCoreOutput = RouterOutput["users"]["all"]["users"][number];
   type UserMetricsOutput = RouterOutput["users"]["metrics"][number];
+  type UserProfileOutput = RouterOutput["users"]["userProfile"]["profile"][number];
 
   type CoreType = Omit<UserCoreOutput, "userId"> & { id: string };
   type MetricType = Omit<UserMetricsOutput, "userId"> & { id: string };
+  type ProfileType = Omit<UserProfileOutput, "userId"> & { id: string };
 
-  const userRowData = joinTableCoreAndMetrics<CoreType, MetricType>(
+  const userRowData = joinTableCoreAndMetrics<CoreType, MetricType, ProfileType>(
     users.data?.users.map((u) => ({
       ...u,
       id: u.userId,
     })),
     userMetrics.data?.map((u) => ({
+      ...u,
+      id: u.userId,
+    })),
+    userProfiles.data?.profile.map((u) => ({
       ...u,
       id: u.userId,
     })),
@@ -99,6 +115,84 @@ export default function UsersPage() {
             />
           </>
         ) : undefined;
+      },
+    },
+    {
+      accessorKey: "age",
+      header: "Age",
+      cell: ({ row }) => {
+        const value: unknown = row.getValue("age");
+        if (userMetrics.isFetching) {
+          return <Skeleton className="h-3 w-1/2" />;
+        }
+        if (typeof value === "string") {
+          return <>{value}</>;
+        }
+      },
+    },
+    {
+      accessorKey: "city",
+      header: "City",
+      cell: ({ row }) => {
+        const value: unknown = row.getValue("city");
+        if (userMetrics.isFetching) {
+          return <Skeleton className="h-3 w-1/2" />;
+        }
+        if (typeof value === "string") {
+          return <>{value}</>;
+        }
+      },
+    },
+    {
+      accessorKey: "gender",
+      header: "Gender",
+      cell: ({ row }) => {
+        const value: unknown = row.getValue("gender");
+        if (userMetrics.isFetching) {
+          return <Skeleton className="h-3 w-1/2" />;
+        }
+        if (typeof value === "string") {
+          return <>{value}</>;
+        }
+      },
+    },
+    {
+      accessorKey: "interests",
+      header: "Interests",
+      cell: ({ row }) => {
+        const value: unknown = row.getValue("interests");
+        if (userMetrics.isFetching) {
+          return <Skeleton className="h-3 w-1/2" />;
+        }
+        if (typeof value === "string") {
+          return <>{value}</>;
+        }
+      },
+    },
+    {
+      accessorKey: "profession",
+      header: "Profession",
+      cell: ({ row }) => {
+        const value: unknown = row.getValue("profession");
+        if (userMetrics.isFetching) {
+          return <Skeleton className="h-3 w-1/2" />;
+        }
+        if (typeof value === "string") {
+          return <>{value}</>;
+        }
+      },
+    },
+    {
+      accessorKey: "relationship_status",
+      header: "Relationship Status",
+      cell: ({ row }) => {
+        const value: unknown = row.getValue("relationship_status");
+        if (userMetrics.isFetching) {
+          return <Skeleton className="h-3 w-1/2" />;
+        }
+        if (typeof value === "string") {
+          return <>{value}</>;
+        }
       },
     },
     {
@@ -224,6 +318,18 @@ export default function UsersPage() {
                   data: userRowData.rows?.map((t) => {
                     return {
                       userId: t.id,
+                      age: 
+                        t.age?.toLocaleString() ?? "-",
+                      city:
+                        t.city?.toLocaleString() ?? "-",
+                      gender:
+                        t.gender?.toLocaleString() ?? "-",
+                      interests:
+                        t.interests?.toLocaleString() ?? "-",
+                      profession:
+                        t.profession?.toLocaleString() ?? "-",
+                      relationship_status:
+                        t.relationship_status?.toLocaleString() ?? "-",
                       firstEvent:
                         t.firstTrace?.toLocaleString() ?? "No event yet",
                       lastEvent:
@@ -258,12 +364,14 @@ export default function UsersPage() {
 function joinTableCoreAndMetrics<
   Core extends { id: string },
   Metric extends { id: string },
+  Profile extends { id: string }
 >(
   userCoreData?: Core[],
   userMetricsData?: Metric[],
+  userProfileData?: Profile[],
 ): {
   status: "loading" | "error" | "success";
-  rows: (Core & Partial<Metric>)[] | undefined;
+  rows: (Core & Partial<Metric> & Partial<Profile>)[] | undefined;
 } {
   if (!userCoreData) {
     return { status: "error", rows: undefined };
@@ -279,6 +387,18 @@ function joinTableCoreAndMetrics<
       rows: userCoreDataProcessed.map((u) => ({
         ...u,
         ...({} as Partial<Metric>),
+        ...({} as Partial<Profile>)
+      })),
+    };
+  }
+
+  if (!userMetricsData || !userProfileData) { // Check for both userMetricsData and user_profile
+    return {
+      status: "success",
+      rows: userCoreDataProcessed.map((u) => ({
+        ...u,
+        ...({} as Partial<Metric>),
+        ...({} as Partial<Profile>), // Add empty profile data
       })),
     };
   }
@@ -291,11 +411,22 @@ function joinTableCoreAndMetrics<
     {},
   );
 
+  const profilesById = userProfileData.reduce<Record<string, Profile>>(
+    (acc, profile) => {
+      acc[profile.id] = profile;
+      return acc;
+    },
+    {},
+  );
+
   const joinedData = userCoreDataProcessed.map((userCore) => {
     const metrics = metricsById[userCore.id];
+    const profile = profilesById[userCore.id];
+
     return {
       ...userCore,
       ...(metrics ?? ({} as Partial<Metric>)),
+      ...(profile ?? ({} as Partial<Profile>)), // Add profile data
     };
   });
 

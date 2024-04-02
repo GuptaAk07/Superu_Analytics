@@ -57,6 +57,55 @@ export const userRouter = createTRPCRouter({
       };
     }),
 
+  userProfile: protectedProjectProcedure
+  .input(
+    z.object({
+      projectId: z.string(),
+      userIds: z.array(z.string().min(1)),
+    }),
+  )
+  .query(async ({ input, ctx }) => {
+    if (input.userIds.length === 0) {
+      return {profile: []};  
+    }
+
+    console.log("HERE")
+    const userProfiles = await ctx.prisma.$queryRaw<
+      Array<{
+        userId: string;
+        age: string;
+        gender: string;
+        interests: string;
+        city: string;
+        profession: string;
+        relationship_status: string;
+      }>
+    >`
+      SELECT
+        t.user_id AS "userId",
+        t.age as Age,
+        t.gender as Gender,
+        t.interests as Interests,
+        t.city as City,
+        t.profession as Profession,
+        t.relationship_status as Relationship_Status
+      FROM
+        user_profiling t
+      WHERE
+        t.project_id = ${input.projectId};
+    `;  
+    
+    if (userProfiles.length === 0) {
+      return {profile: []};
+    }
+
+    console.log("here the query", userProfiles)
+    return {
+      profile: userProfiles
+    };
+  }),
+
+
   metrics: protectedProjectProcedure
     .input(
       z.object({
@@ -266,6 +315,32 @@ export const userRouter = createTRPCRouter({
           ranked_scores
         WHERE rn = 1
       `;
+      
+      const userProfileMetrics = await ctx.prisma.$queryRaw<
+        {
+          userId: string;
+          age: string;
+          gender: string;
+          interests: string;
+          city: string;
+          profession: string;
+          relationship_status: string;
+        }[]
+      >`
+        SELECT
+          t.user_id AS "userId",
+          t.age as age,
+          t.gender as gender,
+          t.interests as interests,
+          t.city as city,
+          t.profession as profession,
+          t.relationship_status as relationship_status
+        FROM
+          user_profiling t
+        WHERE
+          t.project_id = ${input.projectId}
+          AND t.user_id = ${input.userId};
+      `;  
 
       return {
         userId: input.userId,
@@ -280,6 +355,12 @@ export const userRouter = createTRPCRouter({
         totalObservations: agg[0]?.totalObservations ?? 0,
         lastScore: lastScoresOfUsers[0],
         sumCalculatedTotalCost: agg[0]?.sumCalculatedTotalCost ?? 0,
+        age: userProfileMetrics[0]?.age ?? "-",
+        gender: userProfileMetrics[0]?.gender ?? "-",
+        interests: userProfileMetrics[0]?.interests ?? "-",
+        city: userProfileMetrics[0]?.city ?? "-",
+        profession: userProfileMetrics[0]?.profession ?? "-",
+        relationshipStatus: userProfileMetrics[0]?.relationship_status ?? "-",
       };
     }),
 });
