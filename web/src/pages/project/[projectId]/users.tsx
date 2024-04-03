@@ -293,7 +293,7 @@ export default function UsersPage() {
   return (
     <div>
       <Header
-        title="Users"
+        title="User Profiling"
         help={{
           description:
             "Attribute data in Langfuse to a user by adding a userId to your traces. See docs to learn more.",

@@ -44,9 +44,9 @@ export default function UserPage() {
   return (
     <div>
       <Header
-        title="User Detail"
+        title="User Profiling Detail"
         breadcrumb={[
-          { name: "Users", href: `/project/${projectId}/users` },
+          { name: "User Profiling", href: `/project/${projectId}/users` },
           { name: userId },
         ]}
         actionButtons={
@@ -148,7 +148,7 @@ function DetailsTab({ userId, projectId }: TabProps) {
           value: user.data.lastObservation?.toLocaleString(),
         },
         { label: "Total Observations", value: user.data.totalObservations },
-        { label: "Total Traces", value: user.data.totalTraces },
+        { label: "Total Chats", value: user.data.totalTraces },
         {
           label: "Prompt Tokens",
           value: compactNumberFormatter(user.data.totalPromptTokens),
