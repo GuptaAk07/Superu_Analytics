@@ -142,12 +142,12 @@ export const LatencyTables = ({
     <>
       <DashboardCard
         className="col-span-1 xl:col-span-2"
-        title="Trace latencies"
+        title="Chat latencies"
         isLoading={tracesLatencies.isLoading}
       >
         <DashboardTable
           headers={[
-            "Trace Name",
+            "Chat Name",
             <RightAlignedCell key="50th">50th</RightAlignedCell>,
             <RightAlignedCell key="90th">90th</RightAlignedCell>,
             <RightAlignedCell key="95th">

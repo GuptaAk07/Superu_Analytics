@@ -194,10 +194,10 @@ export function TracePage({ traceId }: { traceId: string }) {
   return (
     <div className="flex flex-col overflow-hidden 2xl:container md:h-[calc(100vh-2rem)]">
       <Header
-        title="Trace Detail"
+        title="Chat Detail"
         breadcrumb={[
           {
-            name: "Traces",
+            name: "Chats",
             href: `/project/${router.query.projectId as string}/traces`,
           },
           { name: traceId },

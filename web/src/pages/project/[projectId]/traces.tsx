@@ -9,11 +9,11 @@ export default function Traces() {
   return (
     <div>
       <Header
-        title="Traces"
+        title="Chats"
         help={{
           description:
-            "A trace represents a single function/api invocation. Traces contain observations. See docs to learn more.",
-          href: "https://langfuse.com/docs/tracing",
+            "A chat represents a single function/api invocation. Chats contain observations. See docs to learn more.",
+          // href: "https://langfuse.com/docs/tracing",
         }}
       />
       <TracesTable projectId={projectId} />

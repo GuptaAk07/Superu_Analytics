@@ -72,12 +72,12 @@ export const TracesTimeSeriesChart = ({
   return (
     <DashboardCard
       className={className}
-      title="Traces"
+      title="Chats"
       isLoading={traces.isLoading}
       cardContentClassName="flex flex-col content-end "
     >
       <TotalMetric
-        description={`Traces tracked`}
+        description={`Chats tracked`}
         metric={
           total ? compactNumberFormatter(total) : compactNumberFormatter(0)
         }

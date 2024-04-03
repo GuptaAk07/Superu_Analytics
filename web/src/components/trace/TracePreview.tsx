@@ -38,7 +38,7 @@ export const TracePreview = ({
         <div className="flex flex-col gap-1">
           <CardTitle>
             <span className="mr-2 rounded-sm bg-gray-200 p-1 text-xs">
-              TRACE
+              CHAT
             </span>
             <span>{trace.name}</span>
           </CardTitle>

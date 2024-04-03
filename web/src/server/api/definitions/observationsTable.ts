@@ -19,9 +19,9 @@ export const observationsTableCols: ColumnDefinition[] = [
     internal: 'o."name"',
     options: [], // to be added at runtime
   },
-  { name: "Trace ID", id: "traceId", type: "string", internal: 't."id"' },
+  { name: "Chat ID", id: "traceId", type: "string", internal: 't."id"' },
   {
-    name: "Trace Name",
+    name: "Chat Name",
     id: "traceName",
     type: "stringOptions",
     internal: 't."name"',

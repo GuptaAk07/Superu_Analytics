@@ -93,26 +93,26 @@ export const UserChart = ({
 
   const transformedNumberOfTraces: BarChartDataPoint[] = traces.data
     ? traces.data
-        .filter((item) => item.user !== undefined)
-        .map((item) => {
-          return {
-            name: item.user as string,
-            value: item.countTraceId ? (item.countTraceId as number) : 0,
-          };
-        })
+      .filter((item) => item.user !== undefined)
+      .map((item) => {
+        return {
+          name: item.user as string,
+          value: item.countTraceId ? (item.countTraceId as number) : 0,
+        };
+      })
     : [];
 
   const transformedCost: BarChartDataPoint[] = user.data
     ? user.data
-        .filter((item) => item.user !== undefined)
-        .map((item) => {
-          return {
-            name: (item.user as string | null | undefined) ?? "Unknown",
-            value: item.sumCalculatedTotalCost
-              ? (item.sumCalculatedTotalCost as number)
-              : 0,
-          };
-        })
+      .filter((item) => item.user !== undefined)
+      .map((item) => {
+        return {
+          name: (item.user as string | null | undefined) ?? "Unknown",
+          value: item.sumCalculatedTotalCost
+            ? (item.sumCalculatedTotalCost as number)
+            : 0,
+        };
+      })
     : [];
 
   const totalCost = user.data?.reduce(
@@ -141,7 +141,7 @@ export const UserChart = ({
       formatter: localUsdFormatter,
     },
     {
-      tabTitle: "Count of Traces",
+      tabTitle: "Count of Chats",
       data: isExpanded
         ? transformedNumberOfTraces.slice(0, maxNumberOfEntries.expanded)
         : transformedNumberOfTraces.slice(0, maxNumberOfEntries.collapsed),

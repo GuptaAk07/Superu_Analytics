@@ -209,7 +209,7 @@ export default function GenerationsTable({ projectId }: GenerationsTableProps) {
     {
       accessorKey: "traceId",
       id: "traceId",
-      header: "Trace ID",
+      header: "Chat ID",
       cell: ({ row }) => {
         const value = row.getValue("traceId");
         return typeof value === "string" ? (
@@ -603,7 +603,7 @@ export default function GenerationsTable({ projectId }: GenerationsTableProps) {
         filterState={filterState}
         setFilterState={setFilterState}
         searchConfig={{
-          placeholder: "Search by id, name, traceName, model",
+          placeholder: "Search by id, name, chatName, model",
           updateQuery: setSearchQuery,
           currentQuery: searchQuery ?? undefined,
         }}

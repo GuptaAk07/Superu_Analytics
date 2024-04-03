@@ -5,7 +5,7 @@ import {
 
 export const scoresTableCols: ColumnDefinition[] = [
   {
-    name: "Trace ID",
+    name: "Chat ID",
     id: "traceId",
     type: "string",
     internal: 's."trace_id"',

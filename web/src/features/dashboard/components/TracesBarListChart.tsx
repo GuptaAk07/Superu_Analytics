@@ -75,7 +75,7 @@ export const TracesBarListChart = ({
   return (
     <DashboardCard
       className={className}
-      title={"Traces"}
+      title={"Chats"}
       description={null}
       isLoading={traces.isLoading || totalTraces.isLoading}
     >
@@ -84,7 +84,7 @@ export const TracesBarListChart = ({
           metric={compactNumberFormatter(
             totalTraces.data?.[0]?.countTraceId as number,
           )}
-          description={"Total traces tracked"}
+          description={"Total Chats tracked"}
         />
         {adjustedData.length > 0 ? (
           <>
@@ -101,8 +101,8 @@ export const TracesBarListChart = ({
         ) : (
           <NoData noDataText="No data">
             <DocPopup
-              description="Traces contain details about LLM applications and can be created using the SDK."
-              href="https://langfuse.com/docs/integrations/sdk#1-backend-tracing"
+              description="Chats contain details about LLM applications and can be created using the SDK."
+              // href="https://langfuse.com/docs/integrations/sdk#1-backend-tracing"
             />
           </NoData>
         )}

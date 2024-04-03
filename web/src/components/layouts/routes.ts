@@ -3,13 +3,13 @@ import { type Scope } from "@/src/features/rbac/constants/roleAccessRights";
 import {
   Database,
   LayoutDashboard,
-  LifeBuoy,
+  // LifeBuoy,
   ListTree,
   type LucideIcon,
   Settings,
   UsersIcon,
   PenSquareIcon,
-  TerminalIcon,
+  // TerminalIcon,
 } from "lucide-react";
 
 export type Route = {
@@ -30,11 +30,11 @@ export const ROUTES: Route[] = [
     icon: LayoutDashboard,
   },
   {
-    name: "Tracing",
+    name: "Chats",
     icon: ListTree,
     children: [
       {
-        name: "Traces",
+        name: "Chats",
         pathname: `/project/[projectId]/traces`,
       },
       {
@@ -56,7 +56,7 @@ export const ROUTES: Route[] = [
     ],
   },
   {
-    name: "Users",
+    name: "User Profiling",
     pathname: `/project/[projectId]/users`,
     icon: UsersIcon,
   },
@@ -66,12 +66,12 @@ export const ROUTES: Route[] = [
     icon: PenSquareIcon,
     rbacScope: "prompts:read",
   },
-  {
-    name: "Playground",
-    pathname: "/project/[projectId]/playground",
-    icon: TerminalIcon,
-    featureFlag: "playground",
-  },
+  // {
+  //   name: "Playground",
+  //   pathname: "/project/[projectId]/playground",
+  //   icon: TerminalIcon,
+  //   featureFlag: "playground",
+  // },
   {
     name: "Datasets",
     pathname: `/project/[projectId]/datasets`,
@@ -83,10 +83,10 @@ export const ROUTES: Route[] = [
     icon: Settings,
     bottom: true,
   },
-  {
-    name: "Support",
-    pathname: "/project/[projectId]/support",
-    icon: LifeBuoy,
-    bottom: true,
-  },
+  // {
+  //   name: "Support",
+  //   pathname: "/project/[projectId]/support",
+  //   icon: LifeBuoy,
+  //   bottom: true,
+  // },
 ];

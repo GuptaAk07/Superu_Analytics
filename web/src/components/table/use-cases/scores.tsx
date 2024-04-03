@@ -82,7 +82,7 @@ export default function ScoresTable({
       accessorKey: "traceId",
       id: "traceId",
       enableColumnFilter: true,
-      header: "Trace ID",
+      header: "Chat ID",
       enableSorting: true,
       cell: ({ row }) => {
         const value = row.getValue("traceId");
