@@ -62,7 +62,7 @@ export const LangfuseLogo = ({
           size === "sm" ? "text-sm" : "text-xl",
         )}
       >
-        Langfuse
+        superU Analytics
       </span>
       {version && (
         <a
