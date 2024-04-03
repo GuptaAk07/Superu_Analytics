@@ -6,7 +6,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { MessageSquarePlus, Info, ChevronRightIcon } from "lucide-react";
+import { Info, ChevronRightIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/src/utils/tailwind";
 import {
@@ -16,7 +16,7 @@ import {
 } from "@/src/components/ui/avatar";
 import { api } from "@/src/utils/api";
 import { NewProjectButton } from "@/src/features/projects/components/NewProjectButton";
-import { FeedbackButtonWrapper } from "@/src/features/feedback/component/FeedbackButton";
+// import { FeedbackButtonWrapper } from "@/src/features/feedback/component/FeedbackButton";
 import { Button } from "@/src/components/ui/button";
 import Head from "next/head";
 import { env } from "@/src/env.mjs";
@@ -282,7 +282,7 @@ export default function Layout(props: PropsWithChildren) {
               <ul role="list" className="flex h-full flex-col">
                 <MainNavigation nav={topNavigation} />
                 <MainNavigation nav={bottomNavigation} className="mt-auto" />
-                <FeedbackButtonWrapper
+                {/* <FeedbackButtonWrapper
                   className="space-y-1"
                   title="Provide feedback"
                   description="What do you think about this project? What can be improved?"
@@ -295,7 +295,7 @@ export default function Layout(props: PropsWithChildren) {
                     />
                     Feedback
                   </li>
-                </FeedbackButtonWrapper>
+                </FeedbackButtonWrapper> */}
                 <div className="mb-2 flex flex-row place-content-between items-center">
                   <div className="text-xs font-semibold leading-6 text-gray-400">
                     Project
