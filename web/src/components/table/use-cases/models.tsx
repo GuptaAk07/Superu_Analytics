@@ -56,12 +56,12 @@ export default function ModelTable({ projectId }: { projectId: string }) {
   const totalCount = models.data?.totalCount ?? 0;
 
   const columns: LangfuseColumnDef<ModelTableRow>[] = [
-    {
-      accessorKey: "maintainer",
-      id: "maintainer",
-      enableColumnFilter: true,
-      header: "Maintainer",
-    },
+    // {
+    //   accessorKey: "maintainer",
+    //   id: "maintainer",
+    //   enableColumnFilter: true,
+    //   header: "Maintainer",
+    // },
     {
       accessorKey: "modelName",
       id: "modelName",
