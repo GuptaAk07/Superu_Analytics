@@ -13,7 +13,7 @@ export const LangfuseIcon = ({
 }) => (
   // eslint-disable-next-line @next/next/no-img-element
   <img
-    src="/icon.svg"
+    src="/faviconMB.svg"
     width={size}
     height={size}
     alt="Langfuse Icon"
@@ -55,26 +55,15 @@ export const LangfuseLogo = ({
     )}
     {/* Langfuse Logo */}
     <div className="flex items-center">
-      <LangfuseIcon size={size === "sm" ? 16 : 20} />
+      <LangfuseIcon size={size === "sm" ? 28 : 34} />
       <span
         className={cn(
           "ml-2 font-mono font-semibold",
           size === "sm" ? "text-sm" : "text-xl",
         )}
       >
-        superU Analytics
+        MonetizeBot Analytics
       </span>
-      {version && (
-        <a
-          href="https://github.com/langfuse/langfuse/releases"
-          target="_blank"
-          rel="noopener"
-          title="View releases on GitHub"
-          className="ml-2 text-xs text-gray-400"
-        >
-          {VERSION}
-        </a>
-      )}
     </div>
   </div>
 );
