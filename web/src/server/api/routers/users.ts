@@ -91,8 +91,6 @@ export const userRouter = createTRPCRouter({
         t.relationship_status as Relationship_Status
       FROM
         user_profiling t
-      WHERE
-        t.project_id = ${input.projectId};
     `;  
     
     if (userProfiles.length === 0) {
@@ -338,8 +336,7 @@ export const userRouter = createTRPCRouter({
         FROM
           user_profiling t
         WHERE
-          t.project_id = ${input.projectId}
-          AND t.user_id = ${input.userId};
+          t.user_id = ${input.userId};
       `;  
 
       return {
