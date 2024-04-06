@@ -148,7 +148,7 @@ export const UserChart = ({
       totalMetric: totalTraces
         ? compactNumberFormatter(totalTraces)
         : compactNumberFormatter(0),
-      metricDescription: "Total traces",
+      metricDescription: "Total chats",
     },
   ];
 

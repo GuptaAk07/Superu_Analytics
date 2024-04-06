@@ -10,7 +10,7 @@ import { StringParam, useQueryParam, withDefault } from "use-query-params";
 import { DetailPageNav } from "@/src/features/navigate-detail-pages/DetailPageNav";
 import SessionsTable from "@/src/components/table/use-cases/sessions";
 
-const tabs = ["Details", "Sessions", "Traces", "Scores"] as const;
+const tabs = ["Details", "Sessions", "Chats", "Scores"] as const;
 
 export default function UserPage() {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function UserPage() {
         return <DetailsTab userId={userId} projectId={projectId} />;
       case "Sessions":
         return <SessionsTab userId={userId} projectId={projectId} />;
-      case "Traces":
+      case "Chats":
         return <TracesTab userId={userId} projectId={projectId} />;
       case "Scores":
         return <ScoresTab userId={userId} projectId={projectId} />;
@@ -114,58 +114,58 @@ function DetailsTab({ userId, projectId }: TabProps) {
 
   const userData = user.data
     ? [
-        { label: "User Id", value: user.data.userId },
-        {
-          label: "Age",
-          value: user.data.age?.toLocaleString(),
-        },
-        {
-          label: "Gender",
-          value: user.data.gender?.toLocaleString(),
-        },
-        {
-          label: "Interests",
-          value: user.data.interests?.toLocaleString(),
-        },
-        {
-          label: "City",
-          value: user.data.city?.toLocaleString(),
-        },
-        {
-          label: "Profession",
-          value: user.data.profession?.toLocaleString(),
-        },
-        {
-          label: "Relationship Status",
-          value: user.data.relationshipStatus?.toLocaleString(),
-        },
-        {
-          label: "First Observation",
-          value: user.data.firstObservation?.toLocaleString(),
-        },
-        {
-          label: "Last Observation",
-          value: user.data.lastObservation?.toLocaleString(),
-        },
-        { label: "Total Observations", value: user.data.totalObservations },
-        { label: "Total Chats", value: user.data.totalTraces },
-        {
-          label: "Prompt Tokens",
-          value: compactNumberFormatter(user.data.totalPromptTokens),
-        },
-        {
-          label: "Completion Tokens",
-          value: compactNumberFormatter(user.data.totalCompletionTokens),
-        },
-        {
-          label: "Total Tokens",
-          value: compactNumberFormatter(user.data.totalTokens),
-        },
-        {
-          label: "Total Cost",
-          value: usdFormatter(user.data.sumCalculatedTotalCost, 2, 2),
-        },
-      ]
+      { label: "User Id", value: user.data.userId },
+      {
+        label: "Age",
+        value: user.data.age?.toLocaleString(),
+      },
+      {
+        label: "Gender",
+        value: user.data.gender?.toLocaleString(),
+      },
+      {
+        label: "Interests",
+        value: user.data.interests?.toLocaleString(),
+      },
+      {
+        label: "City",
+        value: user.data.city?.toLocaleString(),
+      },
+      {
+        label: "Profession",
+        value: user.data.profession?.toLocaleString(),
+      },
+      {
+        label: "Relationship Status",
+        value: user.data.relationshipStatus?.toLocaleString(),
+      },
+      {
+        label: "First Observation",
+        value: user.data.firstObservation?.toLocaleString(),
+      },
+      {
+        label: "Last Observation",
+        value: user.data.lastObservation?.toLocaleString(),
+      },
+      { label: "Total Observations", value: user.data.totalObservations },
+      { label: "Total Chats", value: user.data.totalTraces },
+      {
+        label: "Prompt Tokens",
+        value: compactNumberFormatter(user.data.totalPromptTokens),
+      },
+      {
+        label: "Completion Tokens",
+        value: compactNumberFormatter(user.data.totalCompletionTokens),
+      },
+      {
+        label: "Total Tokens",
+        value: compactNumberFormatter(user.data.totalTokens),
+      },
+      {
+        label: "Total Cost",
+        value: usdFormatter(user.data.sumCalculatedTotalCost, 2, 2),
+      },
+    ]
     : [];
 
   return (

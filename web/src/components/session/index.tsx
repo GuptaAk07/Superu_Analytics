@@ -88,7 +88,7 @@ export const SessionPage: React.FC<{
             <Badge>User ID: {userId}</Badge>
           </Link>
         ))}
-        <Badge variant="outline">Traces: {session.data?.traces.length}</Badge>
+        <Badge variant="outline">Chats: {session.data?.traces.length}</Badge>
         {session.data && (
           <Badge variant="outline">
             Total cost: {usdFormatter(session.data.totalCost, 2, 2)}
