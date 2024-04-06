@@ -11,7 +11,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - DATABASE_URL=postgres://postgres:W2wemKvpHhWyD7X@langfuse-postgres-db.ccm9mnr5avgs.ap-south-1.rds.amazonaws.com:5432/postgres
       - NEXTAUTH_SECRET=mysecret
       - SALT=mysalt
       - NEXTAUTH_URL=http://localhost:3000
