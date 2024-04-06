@@ -450,7 +450,7 @@ export class TraceProcessor implements EventProcessor {
     const data = {
       "user_question": body.input.content
     }
-    const response = await axios.post('https://e6b0-119-82-104-46.ngrok-free.app/user_intent', data);
+    const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_intent', data);
     const user_intent = response.data.intent
 
     const input_statements = {
@@ -460,7 +460,7 @@ export class TraceProcessor implements EventProcessor {
     }
     
     // API call to fetch the user profile
-    const response_profile = await axios.post('https://e6b0-119-82-104-46.ngrok-free.app/user_persona', input_statements);
+    const response_profile = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_persona', input_statements);
     const user_profile = response_profile.data.conversation_analysis
 
     // API call to populate data in user profile
@@ -468,7 +468,7 @@ export class TraceProcessor implements EventProcessor {
       "user_profile": user_profile,
       "user_id": body.userId
     }
-    const dump_response = await axios.post('http://127.0.0.1:5000/user_profiling_to_db', user_profile_data);
+    const dump_response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_profiling_to_db', user_profile_data);
 
     if (body.sessionId) {
       await prisma.traceSession.upsert({
