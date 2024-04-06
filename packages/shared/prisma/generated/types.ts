@@ -61,6 +61,13 @@ export type Account = {
     id_token: string | null;
     session_state: string | null;
 };
+export type age_status = {
+    uuid: string;
+    user_id: string;
+    current: number | null;
+    previous: number | null;
+    date: Generated<Timestamp>;
+};
 export type ApiKey = {
     id: string;
     created_at: Generated<Timestamp>;
@@ -85,6 +92,13 @@ export type AuditLog = {
     action: string;
     before: string | null;
     after: string | null;
+};
+export type city_status = {
+    uuid: string;
+    user_id: string;
+    current: string | null;
+    previous: string | null;
+    date: Generated<Timestamp>;
 };
 export type CronJobs = {
     name: string;
@@ -134,6 +148,21 @@ export type Events = {
     headers: Generated<unknown>;
     url: string | null;
     method: string | null;
+};
+export type gender_status = {
+    uuid: string;
+    user_id: string;
+    current: string | null;
+    current_confidence_score: number | null;
+    previous: string | null;
+    date: Generated<Timestamp>;
+};
+export type interests_status = {
+    uuid: string;
+    user_id: string;
+    current: string | null;
+    previous: string | null;
+    date: Generated<Timestamp>;
 };
 export type Membership = {
     project_id: string;
@@ -236,6 +265,13 @@ export type Pricing = {
     currency: Generated<string>;
     token_type: TokenType;
 };
+export type profession_status = {
+    uuid: string;
+    user_id: string;
+    current: string | null;
+    previous: string | null;
+    date: Generated<Timestamp>;
+};
 export type Project = {
     id: string;
     created_at: Generated<Timestamp>;
@@ -254,6 +290,13 @@ export type Prompt = {
     version: number;
     is_active: boolean;
     config: Generated<unknown>;
+};
+export type relationship_status = {
+    uuid: string;
+    user_id: string;
+    current: string | null;
+    previous: string | null;
+    date: Generated<Timestamp>;
 };
 export type Score = {
     id: string;
@@ -328,15 +371,13 @@ export type User = {
     feature_flags: Generated<string[]>;
 };
 export type user_profiling = {
-    id: string;
+    user_id: string;
     age: string | null;
-    user_id: string | null;
     gender: string | null;
     interests: string | null;
     city: string | null;
     profession: string | null;
     relationship_status: string | null;
-    project_id: string;
     created_at: Generated<Timestamp>;
     updated_at: Generated<Timestamp>;
 };
@@ -347,22 +388,28 @@ export type VerificationToken = {
 };
 export type DB = {
     Account: Account;
+    age_status: age_status;
     api_keys: ApiKey;
     audit_logs: AuditLog;
+    city_status: city_status;
     cron_jobs: CronJobs;
     dataset_items: DatasetItem;
     dataset_run_items: DatasetRunItems;
     dataset_runs: DatasetRuns;
     datasets: Dataset;
     events: Events;
+    gender_status: gender_status;
+    interests_status: interests_status;
     membership_invitations: MembershipInvitation;
     memberships: Membership;
     models: Model;
     observations: Observation;
     observations_view: ObservationView;
     pricings: Pricing;
+    profession_status: profession_status;
     projects: Project;
     prompts: Prompt;
+    relationship_status: relationship_status;
     scores: Score;
     Session: Session;
     trace_sessions: TraceSession;
