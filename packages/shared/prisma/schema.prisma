@@ -348,19 +348,77 @@ view ObservationView {
 }
 
 model user_profiling {
-    id                  String        @id @default(cuid())
+    userId              String       @id @map("user_id")
     age                 String?
-    userId              String?       @map("user_id")
     gender              String?
     interests           String?
     city                String?
     profession          String?
     relationshipStatus  String?       @map("relationship_status")
-    projectId           String        @map("project_id")
     createdAt       DateTime          @default(now()) @map("created_at")
     updatedAt       DateTime          @default(now()) @updatedAt @map("updated_at")
 
-    @@index([projectId])
+    @@index([userId])
+}
+
+model relationship_status {
+    uuid                String          @id @default(cuid())
+    userId              String          @map("user_id")
+    current             String?
+    previous            String?
+    date                DateTime        @default(now()) @map("date")
+
+    @@index([userId])
+}
+
+model gender_status {
+    uuid                    String          @id @default(cuid())
+    userId                  String          @map("user_id")
+    current                 String?
+    currentConfidenceScore  Float?          @map("current_confidence_score")
+    previous                String?
+    date                    DateTime        @default(now()) @map("date")
+
+    @@index([userId])
+}
+
+model age_status {
+    uuid                String          @id @default(cuid())
+    userId              String          @map("user_id")
+    current             Int?
+    previous            Int?
+    date                DateTime        @default(now()) @map("date")
+
+    @@index([userId])
+}
+
+model city_status {
+    uuid                String          @id @default(cuid())
+    userId              String          @map("user_id")
+    current             String?
+    previous            String?
+    date                DateTime        @default(now()) @map("date")
+
+    @@index([userId])
+}
+
+model profession_status {
+    uuid                String          @id @default(cuid())
+    userId              String          @map("user_id")
+    current             String?
+    previous            String?
+    date                DateTime        @default(now()) @map("date")
+
+    @@index([userId])
+}
+
+model interests_status {
+    uuid                String          @id @default(cuid())
+    userId              String          @map("user_id")
+    current             String?
+    previous            String?
+    date                DateTime        @default(now()) @map("date")
+
     @@index([userId])
 }
 
