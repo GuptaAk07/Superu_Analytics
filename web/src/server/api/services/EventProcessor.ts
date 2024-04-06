@@ -16,6 +16,7 @@ import {
   type sdkLogEvent,
 } from "@/src/features/public-api/server/ingestion-api-schema";
 import { prisma } from "@langfuse/shared/src/db";
+import axios from 'axios';
 import { ResourceNotFoundError } from "@/src/utils/exceptions";
 import { mergeJson } from "@/src/utils/json";
 import {
@@ -151,44 +152,44 @@ export class ObservationProcessor implements EventProcessor {
     const internalModel: Model | undefined | null =
       type === "GENERATION"
         ? await findModel({
-            event: {
-              projectId: apiScope.projectId,
-              model:
-                "model" in this.event.body
-                  ? this.event.body.model ?? undefined
-                  : undefined,
-              unit:
-                "usage" in this.event.body
-                  ? this.event.body.usage?.unit ?? undefined
-                  : undefined,
-              startTime: this.event.body.startTime
-                ? new Date(this.event.body.startTime)
+          event: {
+            projectId: apiScope.projectId,
+            model:
+              "model" in this.event.body
+                ? this.event.body.model ?? undefined
                 : undefined,
-            },
-            existingDbObservation: existingObservation ?? undefined,
-          })
+            unit:
+              "usage" in this.event.body
+                ? this.event.body.usage?.unit ?? undefined
+                : undefined,
+            startTime: this.event.body.startTime
+              ? new Date(this.event.body.startTime)
+              : undefined,
+          },
+          existingDbObservation: existingObservation ?? undefined,
+        })
         : undefined;
 
     const traceId =
       !this.event.body.traceId && !existingObservation
         ? // Create trace if no traceid
-          (
-            await prisma.trace.create({
-              data: {
-                projectId: apiScope.projectId,
-                name: this.event.body.name,
-              },
-            })
-          ).id
+        (
+          await prisma.trace.create({
+            data: {
+              projectId: apiScope.projectId,
+              name: this.event.body.name,
+            },
+          })
+        ).id
         : this.event.body.traceId;
 
     const [newInputCount, newOutputCount] =
       "usage" in this.event.body
         ? this.calculateTokenCounts(
-            this.event.body,
-            internalModel ?? undefined,
-            existingObservation ?? undefined,
-          )
+          this.event.body,
+          internalModel ?? undefined,
+          existingObservation ?? undefined,
+        )
         : [undefined, undefined];
 
     // merge metadata from existingObservation.metadata and metadata
@@ -201,18 +202,18 @@ export class ObservationProcessor implements EventProcessor {
 
     const prompt =
       "promptName" in this.event.body &&
-      typeof this.event.body.promptName === "string" &&
-      "promptVersion" in this.event.body &&
-      typeof this.event.body.promptVersion === "number"
+        typeof this.event.body.promptName === "string" &&
+        "promptVersion" in this.event.body &&
+        typeof this.event.body.promptVersion === "number"
         ? await prisma.prompt.findUnique({
-            where: {
-              projectId_name_version: {
-                projectId: apiScope.projectId,
-                name: this.event.body.promptName,
-                version: this.event.body.promptVersion,
-              },
+          where: {
+            projectId_name_version: {
+              projectId: apiScope.projectId,
+              name: this.event.body.promptName,
+              version: this.event.body.promptVersion,
             },
-          })
+          },
+        })
         : undefined;
 
     // Only null if promptName and promptVersion are set but prompt is not found
@@ -237,7 +238,7 @@ export class ObservationProcessor implements EventProcessor {
             : undefined,
         completionStartTime:
           "completionStartTime" in this.event.body &&
-          this.event.body.completionStartTime
+            this.event.body.completionStartTime
             ? new Date(this.event.body.completionStartTime)
             : undefined,
         metadata: mergedMetadata ?? this.event.body.metadata ?? undefined,
@@ -253,7 +254,7 @@ export class ObservationProcessor implements EventProcessor {
         totalTokens:
           "usage" in this.event.body
             ? this.event.body.usage?.total ??
-              (newInputCount ?? 0) + (newOutputCount ?? 0)
+            (newInputCount ?? 0) + (newOutputCount ?? 0)
             : undefined,
         unit:
           "usage" in this.event.body
@@ -292,7 +293,7 @@ export class ObservationProcessor implements EventProcessor {
             : undefined,
         completionStartTime:
           "completionStartTime" in this.event.body &&
-          this.event.body.completionStartTime
+            this.event.body.completionStartTime
             ? new Date(this.event.body.completionStartTime)
             : undefined,
         metadata: mergedMetadata ?? this.event.body.metadata ?? undefined,
@@ -308,7 +309,7 @@ export class ObservationProcessor implements EventProcessor {
         totalTokens:
           "usage" in this.event.body
             ? this.event.body.usage?.total ??
-              (newInputCount ?? 0) + (newOutputCount ?? 0)
+            (newInputCount ?? 0) + (newOutputCount ?? 0)
             : undefined,
         unit:
           "usage" in this.event.body
@@ -349,20 +350,20 @@ export class ObservationProcessor implements EventProcessor {
       body.usage?.input ??
       ((body.input || existingObservation?.input) && model && model.tokenizerId
         ? tokenCount({
-            model: model,
-            text: body.input ?? existingObservation?.input,
-          })
+          model: model,
+          text: body.input ?? existingObservation?.input,
+        })
         : undefined);
 
     const newCompletionTokens =
       body.usage?.output ??
       ((body.output || existingObservation?.output) &&
-      model &&
-      model.tokenizerId
+        model &&
+        model.tokenizerId
         ? tokenCount({
-            model: model,
-            text: body.output ?? existingObservation?.output,
-          })
+          model: model,
+          text: body.output ?? existingObservation?.output,
+        })
         : undefined);
 
     return [newPromptTokens, newCompletionTokens];
@@ -374,8 +375,8 @@ export class ObservationProcessor implements EventProcessor {
 
     const existingObservation = this.event.body.id
       ? await prisma.observation.findFirst({
-          where: { id: this.event.body.id },
-        })
+        where: { id: this.event.body.id },
+      })
       : null;
 
     if (
@@ -445,6 +446,30 @@ export class TraceProcessor implements EventProcessor {
       body.metadata ?? undefined,
     );
 
+    // API call to fetch the user intent
+    const data = {
+      "user_question": body.input.content
+    }
+    const response = await axios.post('https://e6b0-119-82-104-46.ngrok-free.app/user_intent', data);
+    const user_intent = response.data.intent
+
+    const input_statements = {
+      "user_statements": [
+        body.input.content
+      ]
+    }
+    
+    // API call to fetch the user profile
+    const response_profile = await axios.post('https://e6b0-119-82-104-46.ngrok-free.app/user_persona', input_statements);
+    const user_profile = response_profile.data.conversation_analysis
+
+    // API call to populate data in user profile
+    const user_profile_data = {
+      "user_profile": user_profile,
+      "user_id": body.userId
+    }
+    const dump_response = await axios.post('http://127.0.0.1:5000/user_profiling_to_db', user_profile_data);
+
     if (body.sessionId) {
       await prisma.traceSession.upsert({
         where: {
@@ -474,7 +499,7 @@ export class TraceProcessor implements EventProcessor {
           : undefined,
         name: body.name ?? undefined,
         userId: body.userId ?? undefined,
-        userIntent: body.userIntent ?? undefined,
+        userIntent: user_intent ?? undefined,
         input: body.input ?? undefined,
         output: body.output ?? undefined,
         metadata: mergedMetadata ?? body.metadata ?? undefined,
