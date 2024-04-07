@@ -448,14 +448,14 @@ export class TraceProcessor implements EventProcessor {
 
     // API call to fetch the user intent
     const data = {
-      "user_question": body.input.content
+      "user_question": (body.input! as { content: string }).content
     }
     const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_intent', data);
     const user_intent = response.data.intent
 
     const input_statements = {
       "user_statements": [
-        body.input.content
+        (body.input! as { content: string }).content
       ]
     }
     
