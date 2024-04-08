@@ -43,7 +43,7 @@ export const ProjectInvitationTemplate = ({
           <Container className="mx-auto my-10 w-[465px] rounded border border-solid border-[#eaeaea] p-5">
             <Section className="mt-8">
               <Img
-                src="https://static.langfuse.com/langfuse_logo_transactional_email.png"
+                src="https://static.pathora.in/images/faviconMB.svg"
                 width="40"
                 height="40"
                 alt="Langfuse"

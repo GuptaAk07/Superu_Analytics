@@ -165,9 +165,10 @@ export default function Layout(props: PropsWithChildren) {
           {currentPathName ? `${currentPathName} | MonetizeBotAnalytics` : "MonetizeBotAnalytics"}
         </title>
         <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/faviconMB.svg"
         />
         <link
           rel="icon"
