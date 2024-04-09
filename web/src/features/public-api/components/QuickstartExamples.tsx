@@ -20,30 +20,30 @@ export const QuickstartExamples = ({
       <TabsList>
         <TabsTrigger value="python">Python</TabsTrigger>
         <TabsTrigger value="js">JS/TS</TabsTrigger>
-        <TabsTrigger value="openai">OpenAI</TabsTrigger>
+        {/* <TabsTrigger value="openai">OpenAI</TabsTrigger>
         <TabsTrigger value="langchain">Langchain</TabsTrigger>
         <TabsTrigger value="langchain-js">Langchain JS</TabsTrigger>
         <TabsTrigger value="llamaindex">LlamaIndex</TabsTrigger>
-        <TabsTrigger value="other">Other</TabsTrigger>
+        <TabsTrigger value="other">Other</TabsTrigger> */}
       </TabsList>
     </div>
     <TabsContent value="python">
-      <CodeView content="pip install langfuse" className="mb-2 bg-blue-50" />
+      {/* <CodeView content="pip install monetizebotanalytics" className="mb-2 bg-blue-50" /> */}
       <CodeView
         className="bg-blue-50"
-        content={`from langfuse import Langfuse\n\nlangfuse = Langfuse(\n  secret_key="${secretKey}",\n  public_key="${publicKey}",\n  host="${host}"\n)`}
+        content={`from superu_llm import SuperuAnalysisService\n\nclient = SuperuAnalysisService(\n  secret_key="${secretKey}",\n  public_key="${publicKey}",\n  host="${host}"\n)`}
       />
       <p className="mt-3 text-xs text-gray-600">
         See{" "}
         <a
-          href="https://langfuse.com/docs/get-started"
+          href="https://github.com/superU-ai/LLM-analytics"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
         >
           Quickstart
         </a>{" "}
-        and{" "}
+        {/* and{" "}
         <a
           href="https://langfuse.com/docs/sdk/python"
           className="underline"
@@ -51,7 +51,7 @@ export const QuickstartExamples = ({
           rel="noopener noreferrer"
         >
           Python docs
-        </a>{" "}
+        </a>{" "} */}
         for more details and an end-to-end example.
       </p>
     </TabsContent>
@@ -87,7 +87,7 @@ export const QuickstartExamples = ({
       <p className="mt-2 text-xs text-gray-600">
         The integration is a drop-in replacement for the OpenAI Python SDK. By
         changing the import, Langfuse will capture all LLM calls and send them
-        to Langfuse asynchronously.
+        to MonetizeBotAnalytics asynchronously.
       </p>
       <CodeView content="pip install langfuse" className="my-2 bg-blue-50" />
       <CodeView
