@@ -10,11 +10,11 @@ export default function Generations() {
     <div>
       <Header
         title="Generations"
-        help={{
-          description:
-            "A generation captures a single LLM call. It is one type of observation which can be nested in a trace. See docs to learn more.",
-          href: "https://langfuse.com/docs/tracing",
-        }}
+        // help={{
+        //   description:
+        //     "A generation captures a single LLM call. It is one type of observation which can be nested in a trace. See docs to learn more.",
+        //   href: "https://langfuse.com/docs/tracing",
+        // }}
       />
       <GenerationsTable projectId={projectId} />
     </div>

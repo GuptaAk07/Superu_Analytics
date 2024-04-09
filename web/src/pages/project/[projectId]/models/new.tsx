@@ -20,11 +20,11 @@ export default function ModelsPage() {
             name: "New",
           },
         ]}
-        help={{
-          description:
-            "Create a project-specific model definition. This will be used by Langfuse to infer model usage (eg tokens) and cost (USD).",
-          href: "https://langfuse.com/docs/model-usage-and-cost",
-        }}
+        // help={{
+        //   description:
+        //     "Create a project-specific model definition. This will be used by Langfuse to infer model usage (eg tokens) and cost (USD).",
+        //   href: "https://langfuse.com/docs/model-usage-and-cost",
+        // }}
       />
       <NewModelForm
         projectId={projectId}

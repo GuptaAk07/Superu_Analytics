@@ -294,11 +294,11 @@ export default function UsersPage() {
     <div>
       <Header
         title="User Profiling"
-        help={{
-          description:
-            "Attribute data in Langfuse to a user by adding a userId to your traces. See docs to learn more.",
-          href: "https://langfuse.com/docs/user-explorer",
-        }}
+        // help={{
+        //   description:
+        //     "Attribute data in Langfuse to a user by adding a userId to your traces. See docs to learn more.",
+        //   href: "https://langfuse.com/docs/user-explorer",
+        // }}
       />
 
       <DataTable

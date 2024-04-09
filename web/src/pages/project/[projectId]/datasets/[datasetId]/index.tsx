@@ -68,7 +68,7 @@ export default function Dataset() {
 
       <p className="mt-3 text-xs text-gray-600">
         Add new runs via Python or JS/TS SDKs. See{" "}
-        <a href="https://langfuse.com/docs/datasets" className="underline">
+        <a href="https://github.com/superU-ai/LLM-analytics" className="underline">
           documentation
         </a>{" "}
         for details.

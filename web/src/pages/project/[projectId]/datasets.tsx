@@ -11,11 +11,11 @@ export default function Traces() {
     <div>
       <Header
         title="Datasets"
-        help={{
-          description:
-            "Datasets in Langfuse are a collection of inputs (and expected outputs) of an LLM application. They are used to benchmark new releases before deployment to production. See docs to learn more.",
-          href: "https://langfuse.com/docs/datasets",
-        }}
+        // help={{
+        //   description:
+        //     "Datasets in Langfuse are a collection of inputs (and expected outputs) of an LLM application. They are used to benchmark new releases before deployment to production. See docs to learn more.",
+        //   href: "https://langfuse.com/docs/datasets",
+        // }}
         actionButtons={
           <DatasetActionButton
             projectId={projectId}

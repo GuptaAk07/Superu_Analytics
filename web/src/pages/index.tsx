@@ -11,7 +11,7 @@ import { NewProjectButton } from "@/src/features/projects/components/NewProjectB
 import Header from "@/src/components/layouts/header";
 import { useRouter } from "next/router";
 import { env } from "@/src/env.mjs";
-import { cn } from "@/src/utils/tailwind";
+// import { cn } from "@/src/utils/tailwind";
 import { useSession } from "next-auth/react";
 import { Spinner } from "@/src/components/layouts/spinner";
 
@@ -37,8 +37,8 @@ export default function GetStartedPage() {
   const demoProject =
     env.NEXT_PUBLIC_DEMO_PROJECT_ID !== undefined
       ? projects?.find(
-          (project) => project.id === env.NEXT_PUBLIC_DEMO_PROJECT_ID,
-        )
+        (project) => project.id === env.NEXT_PUBLIC_DEMO_PROJECT_ID,
+      )
       : undefined;
 
   return (
@@ -47,7 +47,7 @@ export default function GetStartedPage() {
         title="Get started"
         actionButtons={
           <Button asChild>
-            <Link href="https://docs.langfuse.com">Visit docs ↗</Link>
+            <Link href="https://github.com/superU-ai/LLM-analytics">Visit docs ↗</Link>
           </Button>
         }
       />
@@ -76,7 +76,7 @@ export default function GetStartedPage() {
             <CardContent>
               <p>
                 Checkout the {demoProject.name} project, it tracks the Q&A
-                chatbot on the Langfuse documentation.
+                chatbot on the MonetizeBotAnalytics documentation.
               </p>
             </CardContent>
             <CardFooter className="flex flex-wrap gap-2">
@@ -88,7 +88,7 @@ export default function GetStartedPage() {
             </CardFooter>
           </Card>
         ) : null}
-        <Card className={cn(demoProject && "col-span-full")}>
+        {/* <Card className={cn(demoProject && "col-span-full")}>
           <CardHeader>
             <CardTitle>Guided onboarding</CardTitle>
           </CardHeader>
@@ -108,7 +108,7 @@ export default function GetStartedPage() {
               <Link href="mailto:onboarding@langfuse.com">Email</Link>
             </Button>
           </CardFooter>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
