@@ -446,40 +446,40 @@ export class TraceProcessor implements EventProcessor {
       body.metadata ?? undefined,
     );
 
-    console.log("here is the body", body.input)
-    let userQuestion: string = '';
-    let userStatements: string[] = [];
+    // console.log("here is the body", body.input)
+    // let userQuestion: string = '';
+    // let userStatements: string[] = [];
 
 
-    if (Array.isArray(body.input)) {
-      for (const item of body.input) {
-        if (typeof item === 'object' && item !== null && 'content' in item && 'role' in item && item.role === "user" && typeof item.content === 'string') {
-          userQuestion += item.content + '\n';
-          userStatements.push(item.content)
-        }
-      }
-    }
-    // API call to fetch the user intent
-    const data = {
-      "user_question": userQuestion,
-    }
-    const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_intent', data);
-    const user_intent = response.data.intent
+    // if (Array.isArray(body.input)) {
+    //   for (const item of body.input) {
+    //     if (typeof item === 'object' && item !== null && 'content' in item && 'role' in item && item.role === "user" && typeof item.content === 'string') {
+    //       userQuestion += item.content + '\n';
+    //       userStatements.push(item.content)
+    //     }
+    //   }
+    // }
+    // // API call to fetch the user intent
+    // const data = {
+    //   "user_question": userQuestion,
+    // }
+    // const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_intent', data);
+    // const user_intent = response.data.intent
 
-    const input_statements = {
-      "user_statements": userStatements
-    }
+    // const input_statements = {
+    //   "user_statements": userStatements
+    // }
 
-    // API call to fetch the user profile
-    const response_profile = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_persona', input_statements);
-    const user_profile = response_profile.data.conversation_analysis
+    // // API call to fetch the user profile
+    // const response_profile = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_persona', input_statements);
+    // const user_profile = response_profile.data.conversation_analysis
 
-    // API call to populate data in user profile
-    const user_profile_data = {
-      "user_profile": user_profile,
-      "user_id": body.userId
-    }
-    const dump_response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_profiling_to_db', user_profile_data);
+    // // API call to populate data in user profile
+    // const user_profile_data = {
+    //   "user_profile": user_profile,
+    //   "user_id": body.userId
+    // }
+    // const dump_response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/user_profiling_to_db', user_profile_data);
 
     if (body.sessionId) {
       await prisma.traceSession.upsert({
@@ -510,7 +510,7 @@ export class TraceProcessor implements EventProcessor {
           : undefined,
         name: body.name ?? undefined,
         userId: body.userId ?? undefined,
-        userIntent: user_intent ?? undefined,
+        // userIntent: user_intent ?? undefined,
         input: body.input ?? undefined,
         output: body.output ?? undefined,
         metadata: mergedMetadata ?? body.metadata ?? undefined,
