@@ -446,6 +446,19 @@ export class TraceProcessor implements EventProcessor {
       body.metadata ?? undefined,
     );
 
+    const messageBody = {
+      "user_id":  body.userId ?? undefined,
+      "input":  body.input ?? undefined,
+      "chat_id": internalId
+    }
+
+    try {
+      const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/push_message_to_sqs', messageBody);
+      console.log(response.data.message)
+    } catch(err) {
+      console.log("Error triggering API : ", err)
+    }
+
     // console.log("here is the body", body.input)
     // let userQuestion: string = '';
     // let userStatements: string[] = [];
