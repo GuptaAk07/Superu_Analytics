@@ -16,7 +16,7 @@ import {
   type sdkLogEvent,
 } from "@/src/features/public-api/server/ingestion-api-schema";
 import { prisma } from "@langfuse/shared/src/db";
-import axios from 'axios';
+// import axios from 'axios';
 import { ResourceNotFoundError } from "@/src/utils/exceptions";
 import { mergeJson } from "@/src/utils/json";
 import {
@@ -446,18 +446,18 @@ export class TraceProcessor implements EventProcessor {
       body.metadata ?? undefined,
     );
 
-    const messageBody = {
-      "user_id":  body.userId ?? undefined,
-      "input":  body.input ?? undefined,
-      "chat_id": internalId
-    }
+    // const messageBody = {
+    //   "user_id":  body.userId ?? undefined,
+    //   "input":  body.input ?? undefined,
+    //   "chat_id": internalId
+    // }
 
-    try {
-      const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/push_message_to_sqs', messageBody);
-      console.log(response.data.message)
-    } catch(err) {
-      console.log("Error triggering API : ", err)
-    }
+    // try {
+    //   const response = await axios.post('http://internal-user-profile-intent.monetizebot.ai:5000/push_message_to_sqs', messageBody);
+    //   console.log(response.data.message)
+    // } catch(err) {
+    //   console.log("Error triggering API : ", err)
+    // }
 
     // console.log("here is the body", body.input)
     // let userQuestion: string = '';
