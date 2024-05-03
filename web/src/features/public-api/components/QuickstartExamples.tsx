@@ -31,9 +31,9 @@ export const QuickstartExamples = ({
       {/* <CodeView content="pip install monetizebotanalytics" className="mb-2 bg-blue-50" /> */}
       <CodeView
         className="bg-blue-50"
-        content={`from superu_llm import SuperuAnalysisService\n\nclient = SuperuAnalysisService(\n  secret_key="${secretKey}",\n  public_key="${publicKey}",\n  host="${host}"\n)`}
+        content={`import superu\n\ndata = {\n  "input_messages": messages,\n  "output_messages": response.choices[0].message.content,\n  "metadata": {"user": "test-user", "context": "openai testing"},\n  "model": response.model,\n  "user_id": "test user",\n  "usage": response.usage.model_dump(),\n  "name": "test"\n}\n\nservice_client = superu.superU.LLM_Analytics(\n  secret_key="${secretKey}",\n  public_key="${publicKey}",\n)\nservice_client.analyse(data)\n`}
       />
-      <p className="mt-3 text-xs text-gray-600">
+      {/* <p className="mt-3 text-xs text-gray-600">
         See{" "}
         <a
           href="https://github.com/superU-ai/LLM-analytics"
@@ -43,7 +43,7 @@ export const QuickstartExamples = ({
         >
           Quickstart
         </a>{" "}
-        {/* and{" "}
+        and{" "}
         <a
           href="https://langfuse.com/docs/sdk/python"
           className="underline"
@@ -51,9 +51,9 @@ export const QuickstartExamples = ({
           rel="noopener noreferrer"
         >
           Python docs
-        </a>{" "} */}
+        </a>{" "}
         for more details and an end-to-end example.
-      </p>
+      </p> */}
     </TabsContent>
     <TabsContent value="js">
       <CodeView content="npm install langfuse" className="mb-2 bg-blue-50" />

@@ -67,7 +67,7 @@ export function CreateApiKeyButton(props: { projectId: string }) {
       </DialogTrigger>
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
-        className="flex max-h-screen w-full flex-col md:max-w-xl"
+        className="flex max-h-screen w-full flex-col md:max-w-2xl"
       >
         <DialogTitle>API Keys</DialogTitle>
         <div className="shrink overflow-x-hidden overflow-y-scroll">
@@ -84,8 +84,8 @@ export function CreateApiKeyButton(props: { projectId: string }) {
             <CodeView content={generatedKeys?.publicKey ?? "Loading ..."} />
           </div>
           <div>
-            <div className="text-md mb-2 font-semibold">Host</div>
-            <CodeView content={hostname} />
+            <div className="text-md mb-2 font-semibold">Prerequisite</div>
+            <CodeView content={"pip install superu"} />
           </div>
           {generatedKeys && (
             <div className="mb-2 max-w-full">
@@ -97,6 +97,11 @@ export function CreateApiKeyButton(props: { projectId: string }) {
               />
             </div>
           )}
+          <div>
+            <div className="text-md mb-2 font-semibold">Data Format</div>
+            <CodeView className="bg-blue-50" 
+                      content={'data = {\n\n  "input_messages": list[  # array of input messages to the model - Required\n    {\n    "role": "system",\n    "content": "", \n    },\n    {\n    "role": "user",\n    "content": "", \n    }\n]\n  "output_messages": str() # response message from the model - Required,\n  "metadata": dict()       # any metadata to the conversation - Optional\n  "model": str()           # model name - Required,\n  "user_id": str()         # if not given a user_id will be generated - Optional,\n  "usage": dict()          # model usage details - Optional,\n  "name": str()            # name provided to the given conversation - Optional\n\n}\n'} />
+          </div>
         </div>
       </DialogContent>
     </Dialog>
