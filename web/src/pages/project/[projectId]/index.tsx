@@ -179,15 +179,11 @@ export default function Start() {
           projectId={projectId}
           globalFilterState={mergedFilterState}
         />
-        <MetricTable
-          className="col-span-1 xl:col-span-2"
+        <UserChart
+          className="col-span-1 xl:col-span-4"
           projectId={projectId}
           globalFilterState={mergedFilterState}
-        />
-        <ScoresTable
-          className="col-span-1 xl:col-span-2"
-          projectId={projectId}
-          globalFilterState={mergedFilterState}
+          agg={agg}
         />
         <TracesTimeSeriesChart
           className="col-span-1 xl:col-span-3"
@@ -201,11 +197,15 @@ export default function Start() {
           globalFilterState={mergedFilterState}
           agg={agg}
         />
-        <UserChart
+        <MetricTable
           className="col-span-1 xl:col-span-3"
           projectId={projectId}
           globalFilterState={mergedFilterState}
-          agg={agg}
+        />
+        <ScoresTable
+          className="col-span-1 xl:col-span-3"
+          projectId={projectId}
+          globalFilterState={mergedFilterState}
         />
         <ChartScores
           className="col-span-1 xl:col-span-3"

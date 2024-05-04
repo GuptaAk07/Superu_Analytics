@@ -15,6 +15,10 @@ import {
   totalCostDashboardFormatted,
 } from "@/src/features/dashboard/lib/dashboard-utils";
 
+import axios, { AxiosRequestConfig } from 'axios';
+
+// import axios, { AxiosResponse } from 'axios';
+
 type BarChartDataPoint = {
   name: string;
   value: number;
@@ -130,32 +134,77 @@ export const UserChart = ({
   const localUsdFormatter = (value: number) =>
     totalCostDashboardFormatted(value);
 
+  // interface Payload {
+  //   email: string;
+  // }
+
+  // const payload: Payload = {
+  //   email: 'akash@mokx.org',
+  // };
+
+  // const url = 'http://127.0.0.1:5000/earning_summary_by_email';
+
+  // axios.post(url, payload)
+  //   .then((response: AxiosResponse) => {
+  //     console.log('Response:', response.data);
+  //   })
+  //   .catch((error: any) => {
+  //     console.error('Error:', error);
+  //   });
+
+  const options: AxiosRequestConfig = {
+      method: 'POST',
+      url: 'https://links.superu.ai/earning_summary_by_email',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      data: {
+          email: 'akash@mokx.org'
+      }
+  };
+
+  axios(options)
+      .then(function (response) {
+          console.log(response.data);
+      })
+      .catch(function (error) {
+          console.error(error);
+      });
+
   const data = [
     {
-      tabTitle: "Token cost",
-      data: isExpanded
-        ? transformedCost.slice(0, maxNumberOfEntries.expanded)
-        : transformedCost.slice(0, maxNumberOfEntries.collapsed),
-      totalMetric: totalCostDashboardFormatted(totalCost),
-      metricDescription: "Total cost",
+      tabTitle: "Bot Earnings",
+      data:[
+        {
+          "name": "total_clicks",
+          "value": 4
+        },
+        {
+          "name": "average_earning",
+          "value": 5.45
+        }
+
+      ],
+      totalMetric: "$ 21.8",
+      metricDescription: "Total Earnings",
       formatter: localUsdFormatter,
     },
-    {
-      tabTitle: "Count of Chats",
-      data: isExpanded
-        ? transformedNumberOfTraces.slice(0, maxNumberOfEntries.expanded)
-        : transformedNumberOfTraces.slice(0, maxNumberOfEntries.collapsed),
-      totalMetric: totalTraces
-        ? compactNumberFormatter(totalTraces)
-        : compactNumberFormatter(0),
-      metricDescription: "Total chats",
-    },
+    // {
+    //   tabTitle: "Count of Chats",
+    //   data: isExpanded
+    //     ? transformedNumberOfTraces.slice(0, maxNumberOfEntries.expanded)
+    //     : transformedNumberOfTraces.slice(0, maxNumberOfEntries.collapsed),
+    //   totalMetric: totalTraces
+    //     ? compactNumberFormatter(totalTraces)
+    //     : compactNumberFormatter(0),
+    //   metricDescription: "Total chats",
+    // },
   ];
 
   return (
     <DashboardCard
       className={className}
-      title="User consumption"
+      title="MonetizeBot Earnings"
       isLoading={user.isLoading}
     >
       <TabComponent
@@ -172,10 +221,10 @@ export const UserChart = ({
                     />
                     <BarList
                       data={item.data}
-                      valueFormatter={item.formatter}
+                      // valueFormatter={item.formatter}
                       className="mt-2"
-                      showAnimation={true}
-                      color={"indigo"}
+                      // showAnimation={true}
+                      color={"white"}
                     />
                   </>
                 ) : (
