@@ -15,6 +15,7 @@ import {
   totalCostDashboardFormatted,
 } from "@/src/features/dashboard/lib/dashboard-utils";
 import axios from 'axios';
+import { useSession } from "next-auth/react";
 
 
 type BarChartDataPoint = {
@@ -132,17 +133,20 @@ export const UserChart = ({
   const localUsdFormatter = (value: number) =>
     totalCostDashboardFormatted(value);
 
+  const session = useSession();
+  const email = session.data?.user?.email;
+
   const [earningsData, setEarningsData] = useState<BarChartDataPoint[]>([]);
   const [totalEarning, setTotalEarning] = useState<number>(0);
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('https://links.superu.ai/earning_summary_by_email', { email: 'akash@mokx.org' });
+      const response = await axios.post('https://links.superu.ai/earning_summary_by_email', { email: email });
       const data = response.data;
       setTotalEarning(data.total_earning);
       setEarningsData([
-        { name: 'average_earning', value: data.average_earning },
-        { name: 'total_clicks', value: data.total_clicks },
+        { name: 'Average Earning', value: data.average_earning },
+        { name: 'Total Clicks', value: data.total_clicks },
       ]);
     } catch (error) {
       console.error(error);
