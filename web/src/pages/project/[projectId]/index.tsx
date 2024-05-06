@@ -175,19 +175,15 @@ export default function Start() {
       </div>
       <div className="grid w-full grid-cols-1 gap-4 overflow-hidden lg:grid-cols-2 xl:grid-cols-6">
         <TracesBarListChart
-          className="col-span-1 xl:col-span-2"
-          projectId={projectId}
-          globalFilterState={mergedFilterState}
+            className="col-span-1 xl:col-span-3"
+            projectId={projectId}
+            globalFilterState={mergedFilterState}
         />
-        <MetricTable
-          className="col-span-1 xl:col-span-2"
+        <UserChart
+          className="col-span-1 xl:col-span-3"
           projectId={projectId}
           globalFilterState={mergedFilterState}
-        />
-        <ScoresTable
-          className="col-span-1 xl:col-span-2"
-          projectId={projectId}
-          globalFilterState={mergedFilterState}
+          agg={agg}
         />
         <TracesTimeSeriesChart
           className="col-span-1 xl:col-span-3"
@@ -201,28 +197,32 @@ export default function Start() {
           globalFilterState={mergedFilterState}
           agg={agg}
         />
-        <UserChart
+        <MetricTable
           className="col-span-1 xl:col-span-3"
           projectId={projectId}
           globalFilterState={mergedFilterState}
-          agg={agg}
         />
-        <ChartScores
+        <ScoresTable
+          className="col-span-1 xl:col-span-3"
+          projectId={projectId}
+          globalFilterState={mergedFilterState}
+        />
+        {/* <ChartScores
           className="col-span-1 xl:col-span-3"
           agg={agg}
           projectId={projectId}
           globalFilterState={mergedFilterState}
-        />
-        <LatencyTables
+        /> */}
+        {/* {/* <LatencyTables
           projectId={projectId}
           globalFilterState={mergedFilterState}
-        />
+        /> */}
         <GenerationLatencyChart
           className="col-span-1 flex-auto justify-between xl:col-span-full"
           projectId={projectId}
           agg={agg}
           globalFilterState={mergedFilterState}
-        />
+        /> */}
       </div>
     </div>
   );

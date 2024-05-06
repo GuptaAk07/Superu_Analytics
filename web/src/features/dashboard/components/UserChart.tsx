@@ -14,6 +14,8 @@ import {
   createTracesTimeFilter,
   totalCostDashboardFormatted,
 } from "@/src/features/dashboard/lib/dashboard-utils";
+import axios from 'axios';
+
 
 type BarChartDataPoint = {
   name: string;
@@ -130,32 +132,50 @@ export const UserChart = ({
   const localUsdFormatter = (value: number) =>
     totalCostDashboardFormatted(value);
 
+  const [earningsData, setEarningsData] = useState<BarChartDataPoint[]>([]);
+  const [totalEarning, setTotalEarning] = useState<number>(0);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post('https://links.superu.ai/earning_summary_by_email', { email: 'akash@mokx.org' });
+      const data = response.data;
+      setTotalEarning(data.total_earning);
+      setEarningsData([
+        { name: 'average_earning', value: data.average_earning },
+        { name: 'total_clicks', value: data.total_clicks },
+      ]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+  const formattedTotalEarning = `$${totalEarning.toFixed(2)}`;
+  
   const data = [
     {
-      tabTitle: "Token cost",
-      data: isExpanded
-        ? transformedCost.slice(0, maxNumberOfEntries.expanded)
-        : transformedCost.slice(0, maxNumberOfEntries.collapsed),
-      totalMetric: totalCostDashboardFormatted(totalCost),
-      metricDescription: "Total cost",
+      tabTitle: "Bot Earnings",
+      data: earningsData,
+      totalMetric: formattedTotalEarning,
+      metricDescription: "Total Earnings",
       formatter: localUsdFormatter,
     },
-    {
-      tabTitle: "Count of Chats",
-      data: isExpanded
-        ? transformedNumberOfTraces.slice(0, maxNumberOfEntries.expanded)
-        : transformedNumberOfTraces.slice(0, maxNumberOfEntries.collapsed),
-      totalMetric: totalTraces
-        ? compactNumberFormatter(totalTraces)
-        : compactNumberFormatter(0),
-      metricDescription: "Total chats",
-    },
+    // {
+    //   tabTitle: "Count of Chats",
+    //   data: isExpanded
+    //     ? transformedNumberOfTraces.slice(0, maxNumberOfEntries.expanded)
+    //     : transformedNumberOfTraces.slice(0, maxNumberOfEntries.collapsed),
+    //   totalMetric: totalTraces
+    //     ? compactNumberFormatter(totalTraces)
+    //     : compactNumberFormatter(0),
+    //   metricDescription: "Total chats",
+    // },
   ];
 
   return (
     <DashboardCard
       className={className}
-      title="User consumption"
+      title="MonetizeBot Earnings"
       isLoading={user.isLoading}
     >
       <TabComponent
@@ -172,18 +192,18 @@ export const UserChart = ({
                     />
                     <BarList
                       data={item.data}
-                      valueFormatter={item.formatter}
+                      // valueFormatter={item.formatter}
                       className="mt-2"
                       showAnimation={true}
-                      color={"indigo"}
+                      color={"white"}
                     />
                   </>
                 ) : (
                   <NoData noDataText="No data">
-                    <DocPopup
+                    {/* <DocPopup
                       description="Consumption per user is tracked by passing their ids on traces."
-                      href="https://langfuse.com/docs/user-explorer"
-                    />
+                      // href="https://langfuse.com/docs/user-explorer"
+                    /> */}
                   </NoData>
                 )}
               </>
