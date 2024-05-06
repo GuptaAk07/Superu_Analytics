@@ -64,7 +64,7 @@ export const QuickstartExamples = ({
       <p className="mt-3 text-xs text-gray-600">
         See{" "}
         <a
-          href="https://langfuse.com/docs/get-started"
+          // href="https://langfuse.com/docs/get-started"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -73,7 +73,7 @@ export const QuickstartExamples = ({
         </a>{" "}
         and{" "}
         <a
-          href="https://langfuse.com/docs/sdk/typescript"
+          // href="https://langfuse.com/docs/sdk/typescript"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -102,7 +102,7 @@ export const QuickstartExamples = ({
       <p className="mt-2 text-xs text-gray-600">
         Use the OpenAI SDK as you would normally. See the{" "}
         <a
-          href="https://langfuse.com/docs/integrations/openai"
+          // href="https://langfuse.com/docs/integrations/openai"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -125,7 +125,7 @@ export const QuickstartExamples = ({
       <p className="mt-2 text-xs text-gray-600">
         See the{" "}
         <a
-          href="https://langfuse.com/docs/integrations/langchain/python"
+          // href="https://langfuse.com/docs/integrations/langchain/python"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -151,7 +151,7 @@ export const QuickstartExamples = ({
       <p className="mt-2 text-xs text-gray-600">
         See the{" "}
         <a
-          href="https://langfuse.com/docs/integrations/langchain/typescript"
+          // href="https://langfuse.com/docs/integrations/langchain/typescript"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -177,7 +177,7 @@ export const QuickstartExamples = ({
       <p className="mt-2 text-xs text-gray-600">
         See the{" "}
         <a
-          href="https://langfuse.com/docs/integrations/llama-index"
+          // href="https://langfuse.com/docs/integrations/llama-index"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -191,7 +191,7 @@ export const QuickstartExamples = ({
       <p className="mt-2 text-xs text-gray-600">
         Use the{" "}
         <a
-          href="https://api.reference.langfuse.com/"
+          // href="https://api.reference.langfuse.com/"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -200,7 +200,7 @@ export const QuickstartExamples = ({
         </a>{" "}
         or one of the{" "}
         <a
-          href="https://langfuse.com/docs/integrations"
+          // href="https://langfuse.com/docs/integrations"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"

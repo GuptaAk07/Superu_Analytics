@@ -5,7 +5,7 @@ export const CloudPrivacyNotice = ({ action }: { action: string }) =>
     <div className="mt-5 text-center text-xs text-gray-500">
       By {action} you are agreeing to our{" "}
       <a
-        href="https://langfuse.com/tos"
+        // href="https://langfuse.com/tos"
         target="_blank"
         rel="noopener noreferrer"
         className="italic"
@@ -14,7 +14,7 @@ export const CloudPrivacyNotice = ({ action }: { action: string }) =>
       </a>
       ,{" "}
       <a
-        href="https://langfuse.com/privacy"
+        // href="https://langfuse.com/privacy"
         rel="noopener noreferrer"
         className="italic"
       >
@@ -22,7 +22,7 @@ export const CloudPrivacyNotice = ({ action }: { action: string }) =>
       </a>
       , and{" "}
       <a
-        href="https://langfuse.com/cookie-policy"
+        // href="https://langfuse.com/cookie-policy"
         rel="noopener noreferrer"
         className="italic"
       >
