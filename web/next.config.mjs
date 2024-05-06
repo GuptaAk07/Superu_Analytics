@@ -65,15 +65,15 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/:path((?!api).*)*',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: cspHeader.replace(/\n/g, ''),
-          },
-        ],
-      },
+      // {
+      //   source: '/:path((?!api).*)*',
+      //   headers: [
+      //     {
+      //       key: 'Content-Security-Policy',
+      //       value: cspHeader.replace(/\n/g, ''),
+      //     },
+      //   ],
+      // },
       // Required to check authentication status from langfuse.com
       ...(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== undefined
         ? [
