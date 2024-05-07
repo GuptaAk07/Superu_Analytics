@@ -222,7 +222,7 @@ export default function Start() {
           projectId={projectId}
           agg={agg}
           globalFilterState={mergedFilterState}
-        /> */}
+        />
       </div>
     </div>
   );
